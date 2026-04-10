@@ -1,10 +1,14 @@
 function [augTrain, augValidation, augTest] = preprocessImages(im_Train, im_Validation, im_Test)
 
-% AlexNet input size
-inputSize = [227 227 3];
+% GoogLeNet input size
+inputSize = [224 224 3];
 
-% Data Augmentation (training only), random rotation and horizontal flip
-augmenter = imageDataAugmenter('RandRotation', [-15 15], 'RandXReflection', true);
+% Data Augmentation (training only)
+augmenter = imageDataAugmenter( ...
+    'RandRotation', [-30 30], ...
+    'RandXReflection', true, ...
+    'RandXTranslation', [-15 15], ...   
+    'RandYTranslation', [-15 15]);
 
 % Preprocess Training Data: Resize + Augmentation
 augTrain = augmentedImageDatastore(inputSize, im_Train, 'DataAugmentation', augmenter);
