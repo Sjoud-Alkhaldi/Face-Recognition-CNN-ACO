@@ -2,7 +2,7 @@
 %  1  load the dataset
 
 function [im_Train, im_Validation, im_Test] = prepareDataset()
-
+rng(42);
 % Dataset path :
 im_Path = fullfile(pwd, 'CelebA');
 
